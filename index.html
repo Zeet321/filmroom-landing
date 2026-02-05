@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FILMROOM - The Sports Card Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0A0E27 0%, #1E2749 100%);
+            color: #FFFFFF;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            margin-top: 60px;
+            margin-bottom: 20px;
+            color: #00FF88;
+            text-transform: uppercase;
+        }
+
+        .headline {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            color: #FFFFFF;
+        }
+
+        .subheadline {
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 60px;
+            color: #B8C5D6;
+        }
+
+        .waitlist-box {
+            background: rgba(30, 39, 73, 0.6);
+            border: 2px solid #FF6B35;
+            border-radius: 20px;
+            padding: 40px 30px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .waitlist-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .benefits {
+            text-align: left;
+            margin-bottom: 30px;
+            padding-left: 20px;
+        }
+
+        .benefits li {
+            list-style: none;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            color: #00FF88;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .benefits li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 1rem;
+            border: 2px solid #00FF88;
+            border-radius: 10px;
+            background: rgba(10, 14, 39, 0.8);
+            color: #FFFFFF;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input::placeholder {
+            color: #8B96A8;
+        }
+
+        input:focus {
+            border-color: #FF6B35;
+            background: rgba(10, 14, 39, 0.95);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px 30px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #FF6B35 0%, #FFA500 50%, #00FF88 100%);
+            color: #0A0E27;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .coming-soon {
+            font-size: 1rem;
+            color: #B8C5D6;
+            margin-top: 30px;
+            margin-bottom: 60px;
+        }
+
+        .social-section {
+            margin-bottom: 40px;
+        }
+
+        .social-title {
+            font-size: 1rem;
+            color: #B8C5D6;
+            margin-bottom: 15px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            color: #00FF88;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: rgba(0, 255, 136, 0.1);
+        }
+
+        .social-links a:hover {
+            color: #FF6B35;
+            background: rgba(255, 107, 53, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            font-size: 0.9rem;
+            color: #6B7A93;
+            margin-bottom: 20px;
+        }
+
+        .success-message {
+            background: rgba(0, 255, 136, 0.2);
+            border: 2px solid #00FF88;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .error-message {
+            background: rgba(255, 107, 53, 0.2);
+            border: 2px solid #FF6B35;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+                margin-top: 40px;
+            }
+
+            .headline {
+                font-size: 1.3rem;
+            }
+
+            .subheadline {
+                font-size: 1rem;
+            }
+
+            .waitlist-box {
+                padding: 30px 20px;
+            }
+
+            .waitlist-title {
+                font-size: 1.5rem;
+            }
+
+            .benefits li {
+                font-size: 0.95rem;
+            }
+
+            .social-links {
+                gap: 10px;
+            }
+
+            .social-links a {
+                font-size: 0.9rem;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🎬 FILMROOM</div>
+        
+        <div class="headline">
+            Where the best sports<br>conversations happen
+        </div>
+        
+        <div class="subheadline">
+            A party card game for sports enthusiasts
+        </div>
+
+        <div class="waitlist-box">
+            <div class="waitlist-title">Join the Waitlist</div>
+            
+            <ul class="benefits">
+                <li>Early bird Kickstarter pricing</li>
+                <li>Exclusive launch updates</li>
+                <li>First access to new editions</li>
+            </ul>
+
+            <div class="success-message" id="successMessage">
+                🎉 You're on the list! Check your email for confirmation.
+            </div>
+
+            <div class="error-message" id="errorMessage">
+                Something went wrong. Please try again.
+            </div>
+
+            <form id="waitlistForm">
+                <div class="form-group">
+                    <input 
+                        type="text" 
+                        id="name" 
+                        name="name" 
+                        placeholder="Your name" 
+                        required
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        placeholder="your@email.com" 
+                        required
+                    >
+                </div>
+                
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    Get Early Access
+                </button>
+            </form>
+        </div>
+
+        <div class="coming-soon">
+            Coming soon to Kickstarter
+        </div>
+
+        <div class="social-section">
+            <div class="social-title">Follow the journey:</div>
+            <div class="social-links">
+                <a href="https://instagram.com/filmroomgame" target="_blank">Instagram</a>
+                <a href="https://tiktok.com/@filmroomgame" target="_blank">TikTok</a>
+                <a href="https://twitter.com/filmroomgame" target="_blank">Twitter</a>
+                <a href="https://facebook.com/filmroomgame" target="_blank">Facebook</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            © 2026 FILMROOM
+        </div>
+    </div>
+
+    <script>
+        // REPLACE THESE WITH YOUR ACTUAL SUPABASE CREDENTIALS
+        const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+        const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+
+        document.getElementById('waitlistForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            
+            // Disable button and show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Joining...';
+            
+            // Hide previous messages
+            successMessage.classList.remove('show');
+            errorMessage.classList.remove('show');
+            
+            try {
+                // Send to Supabase
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        created_at: new Date().toISOString()
+                    })
+                });
+                
+                if (response.ok || response.status === 201) {
+                    // Success
+                    successMessage.classList.add('show');
+                    document.getElementById('waitlistForm').reset();
+                } else {
+                    // Error
+                    errorMessage.classList.add('show');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                errorMessage.classList.add('show');
+            } finally {
+                // Re-enable button
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Get Early Access';
+            }
+        });
+    </script>
+</body>
+</html>
