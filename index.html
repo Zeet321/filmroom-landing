@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FILMROOM - The Sports Card Game</title>
+    <title>FILMROOM - Football Edition</title>
     <style>
         * {
             margin: 0;
@@ -23,34 +23,97 @@
         }
 
         .container {
-            max-width: 600px;
+            max-width: 700px;
             width: 100%;
             text-align: center;
         }
 
         .logo {
-            font-size: 3rem;
+            font-family: Impact, 'Arial Black', sans-serif;
+            font-size: 4.5rem;
             font-weight: 900;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.05em;
             margin-top: 60px;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             color: #00FF88;
             text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        .tm {
+            font-size: 1.5rem;
+            vertical-align: super;
+        }
+
+        .edition {
+            font-size: 1.2rem;
+            color: #FF6B35;
+            font-weight: 700;
+            margin-bottom: 25px;
+            letter-spacing: 0.1em;
         }
 
         .headline {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            line-height: 1.4;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+            line-height: 1.5;
             color: #FFFFFF;
         }
 
-        .subheadline {
+        .how-to-play {
+            background: rgba(30, 39, 73, 0.4);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        .how-to-play h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #00FF88;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .step {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .step-number {
+            background: #FF6B35;
+            color: #0A0E27;
+            font-weight: 900;
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+            padding-top: 5px;
+        }
+
+        .step-title {
+            font-weight: 700;
             font-size: 1.1rem;
-            font-weight: 400;
-            margin-bottom: 60px;
+            color: #00FF88;
+            margin-bottom: 5px;
+        }
+
+        .step-description {
+            font-size: 1rem;
             color: #B8C5D6;
+            line-height: 1.4;
         }
 
         .waitlist-box {
@@ -223,16 +286,42 @@
 
         @media (max-width: 768px) {
             .logo {
-                font-size: 2.5rem;
+                font-size: 3rem;
                 margin-top: 40px;
+            }
+
+            .tm {
+                font-size: 1rem;
+            }
+
+            .edition {
+                font-size: 1rem;
             }
 
             .headline {
                 font-size: 1.3rem;
             }
 
-            .subheadline {
+            .how-to-play {
+                padding: 25px 20px;
+            }
+
+            .how-to-play h2 {
+                font-size: 1.3rem;
+            }
+
+            .step-number {
+                width: 35px;
+                height: 35px;
+                font-size: 1.2rem;
+            }
+
+            .step-title {
                 font-size: 1rem;
+            }
+
+            .step-description {
+                font-size: 0.95rem;
             }
 
             .waitlist-box {
@@ -260,14 +349,42 @@
 </head>
 <body>
     <div class="container">
-        <div class="logo">🎬 FILMROOM</div>
-        
-        <div class="headline">
-            Where the best sports<br>conversations happen
+        <div class="logo">
+            FILMROOM<span class="tm">™</span>
         </div>
         
-        <div class="subheadline">
-            A party card game for sports enthusiasts
+        <div class="edition">FOOTBALL EDITION</div>
+        
+        <div class="headline">
+            High Energy. Hot Takes.<br>Do YOU Really Know Ball?
+        </div>
+
+        <div class="how-to-play">
+            <h2>HOW TO PLAY</h2>
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-title">Draw Cards, Answer Challenges</div>
+                    <div class="step-description">Take turns drawing cards with trivia, debates, or naming challenges. Wrong answer? Get a strike.</div>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="step-title">3 Strikes & You're Out</div>
+                    <div class="step-description">Mess up three times and you're eliminated. Use special cards to block strikes or sabotage opponents.</div>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <div class="step-title">Last One Standing Wins</div>
+                    <div class="step-description">Survive longer than everyone else. Prove you're the ultimate football expert.</div>
+                </div>
+            </div>
         </div>
 
         <div class="waitlist-box">
@@ -335,9 +452,8 @@
 
     <script>
         // REPLACE THESE WITH YOUR ACTUAL SUPABASE CREDENTIALS
-        const SUPABASE_URL = 'https://qpqmdpusiqooekfvuloz.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFwcW1kcHVzaXFvb2VrZnZ1bG96Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAzMjE5OTksImV4cCI6MjA4NTg5Nzk5OX0.GKE83-g8JfboupaLXXDaQaAq0_ywiFHEEeDqn10iCLE
-';
+        const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+        const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
 
         document.getElementById('waitlistForm').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -346,20 +462,16 @@
             const successMessage = document.getElementById('successMessage');
             const errorMessage = document.getElementById('errorMessage');
             
-            // Get form values
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             
-            // Disable button and show loading state
             submitBtn.disabled = true;
             submitBtn.textContent = 'Joining...';
             
-            // Hide previous messages
             successMessage.classList.remove('show');
             errorMessage.classList.remove('show');
             
             try {
-                // Send to Supabase
                 const response = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
                     method: 'POST',
                     headers: {
@@ -376,23 +488,19 @@
                 });
                 
                 if (response.ok || response.status === 201) {
-                    // Success
                     successMessage.classList.add('show');
                     document.getElementById('waitlistForm').reset();
                 } else {
-                    // Error
                     errorMessage.classList.add('show');
                 }
             } catch (error) {
                 console.error('Error:', error);
                 errorMessage.classList.add('show');
             } finally {
-                // Re-enable button
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Get Early Access';
             }
         });
     </script>
 </body>
-
 </html>
